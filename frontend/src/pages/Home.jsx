@@ -1,18 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import bikeImage from '../images/bikewithriders1.jpg';
-import step1 from '../images/affordable.jpg';
-import step2 from '../images/easy_booking.jpg';
-import step3 from '../images/reliable.jpg';
-import step4 from '../images/safety.jpg';
-import step5 from '../images/support.jpg';
+import why1 from '../images/affordable.jpg';
+import why2 from '../images/easy_booking.jpg';
+import why3 from '../images/reliable.jpg';
+import why4 from '../images/safety.jpg';
+import why5 from '../images/support.jpg';
 import discountImage from '../images/discount.png';
 import backgroundImage from '../images/news-letter-bg.jpg';
-import { FaGlobe } from 'react-icons/fa';
-import { FaUserPlus } from "react-icons/fa6";
-import { LuCalendarClock } from "react-icons/lu";
-import { MdCloudDone } from "react-icons/md";
-import Slider from '../components/Slider';
+import step1 from '../images/step1.jpg';
+import step2 from '../images/step2.jpg';
+import step3 from '../images/step3.jpg';
+import step4 from '../images/step4.jpg';
 
 const HomePage = () => {
   return (
@@ -33,23 +32,23 @@ const HomePage = () => {
       <h2>WHY CHOOSE US?</h2>
       <ul className="why-points-list">
         <li className="why-points-item">
-          <img src={step1} alt="Affordable Rates" />
+          <img src={why1} alt="Affordable Rates" />
           <p>Affordable Rates: Only ₹500 per day</p>
         </li>
         <li className="why-points-item">
-          <img src={step2} alt="Easy Booking" />
+          <img src={why2} alt="Easy Booking" />
           <p>Easy Booking: Simple and user-friendly</p>
         </li>
         <li className="why-points-item">
-          <img src={step3} alt="Reliable Ride" />
+          <img src={why3} alt="Reliable Ride" />
           <p>Reliable Ride: TVS Jupiter 2019 model</p>
         </li>
         <li className="why-points-item">
-          <img src={step4} alt="Safety First" />
+          <img src={why4} alt="Safety First" />
           <p>Safety First: Includes helmets</p>
         </li>
         <li className="why-points-item">
-          <img src={step5} alt="24/7 Support" />
+          <img src={why5} alt="24/7 Support" />
           <p>24/7 Support: Dedicated phone line</p>
         </li>
       </ul>
@@ -65,45 +64,27 @@ const HomePage = () => {
       </div>
     </div>
     
-    {/* <div className="how-to-book">
-      <h2>HOW TO BOOK A RIDE</h2>
-      {/* <div className="steps-container">
-
-        <div className="step">
-          <FaGlobe className="step-icon" />
-          <div className="step-description">
-            <div className="step-circle">1</div>
-            <p>Visit our website or download our app (coming soon!).</p>
-          </div>  
-        </div>
-
-        <div className="step">
-          <div className="step-description">
-            <div className="step-circle">2</div>
-            <p>Register/Login to your account.</p>
-          </div>  
-          <FaUserPlus className="step-icon" />
-        </div>
-
-        <div className="step">
-          <LuCalendarClock className="step-icon" />
-          <div className="step-description">
-            <div className="step-circle">3</div>
-            <p>Choose your dates and vehicle.</p>
-          </div>  
-        </div>
-
-        <div className="step">
-          <div className="step-description">
-            <div className="step-circle">4</div>
-            <p>Confirm your booking and enjoy the ride!            </p>
-          </div>  
-          <MdCloudDone className="step-icon" />
-        </div>
-
-      </div> 
-    </div> */}
-    <Slider/>
+    <div className="why-points">
+      <h2>STEPS TO BOOK YOUR RIDE</h2>
+      <ul className="why-points-list">
+        <li className="why-points-item">
+          <img src={step1} alt="Affordable Rates" />
+          <p>Visit our website or download our app </p>
+        </li>
+        <li className="why-points-item">
+          <img src={step2} alt="Easy Booking" />
+          <p>Register/Login to your account</p>
+        </li>
+        <li className="why-points-item">
+          <img src={step3} alt="Reliable Ride" />
+          <p>Choose your dates and vehicle</p>
+        </li>
+        <li className="why-points-item">
+          <img src={step4} alt="Safety First" />
+          <p>Confirm your booking and enjoy the ride!</p>
+        </li>
+      </ul>
+    </div>
 
     <div className="newsletter-container" style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div className="newsletter-content">

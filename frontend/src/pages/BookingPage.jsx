@@ -132,9 +132,27 @@ function BookingPage() {
           </div>
           {openSection === 'paymentInfo' && (
             <div className="section-content">
-              <div>
-                <label>Payment Method:</label>
-                <input type="text" name="paymentMethod" value={formData.paymentMethod} onChange={handleChange} required />
+              <div className="radio-container">
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  value="cash"
+                  checked={formData.paymentMethod === 'cash'}
+                  onChange={handleChange}
+                  required
+                />
+                <span className="radio-label">Cash Payment</span>
+              </div>
+              <div className="radio-container">
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  value="online"
+                  checked={formData.paymentMethod === 'online'}
+                  onChange={handleChange}
+                  required
+                />
+                <span className="radio-label">Online Payment</span>
               </div>
             </div>
           )}

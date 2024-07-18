@@ -1,25 +1,21 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import {jwtDecode} from 'jwt-decode';
 
-function Register() {
+const Register = () => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
-    contact: '',
+    contactNumber: '',
     address: '',
     email: '',
     password: '',
     confirmPassword: '',
-    terms: false,
+    termsAccepted: false,
   });
 
   const [errors, setErrors] = useState({});
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value, checked, type } = e.target;
     setFormData({
       ...formData,
       [name]: type === 'checkbox' ? checked : value,
@@ -27,141 +23,141 @@ function Register() {
   };
 
   const validate = () => {
-    let formErrors = {};
+    const errors = {};
+    const namePattern = /^[A-Za-z]{1,20}$/;
+    const contactPattern = /^\d{10}$/;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/;
+    const easyPasswords = ['123456', formData.firstName.toLowerCase(), formData.lastName.toLowerCase()];
 
-    if (!formData.email.includes('@')) {
-      formErrors.email = 'Invalid email address';
+    if (!namePattern.test(formData.firstName)) {
+      errors.firstName = 'First name must be alphabetic and not more than 20 characters';
     }
 
+    if (!namePattern.test(formData.lastName)) {
+      errors.lastName = 'Last name must be alphabetic and not more than 20 characters';
+    }
+
+    if (!contactPattern.test(formData.contactNumber)) {
+      errors.contactNumber = 'Contact number must be a 10-digit number';
+    }
+
+    if (!emailPattern.test(formData.email)) {
+      errors.email = 'Invalid email address';
+    }
+
+    if (!passwordPattern.test(formData.password) || easyPasswords.includes(formData.password.toLowerCase())) {
+      errors.password = 'Password must be at least 8 characters and include 1 uppercase, 1 lowercase, 1 number, and 1 special character, and should not be too easy';
+    }
     if (formData.password !== formData.confirmPassword) {
-      formErrors.password = 'Passwords do not match';
+            errors.password = 'Passwords do not match';
+         }
+
+    if (!formData.termsAccepted) {
+      errors.termsAccepted = 'You must accept the terms and conditions';
     }
 
-    if (!formData.terms) {
-      formErrors.terms = 'You must accept the terms and conditions';
-    }
-
-    setErrors(formErrors);
-
-    return Object.keys(formErrors).length === 0;
+    setErrors(errors);
+    return Object.keys(errors).length === 0;
   };
 
-  const registerUser = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      try {
-        // Simulating an API call to register the user
-        const response = await axios.post('http://localhost:3000/register', formData);
-        const { token } = response.data;
-
-        // Save the JWT to local storage
-        localStorage.setItem('token', token);
-
-        // Decode the token and save user details to local storage
-        const decoded = {jwtDecode}(token);
-        localStorage.setItem('user', JSON.stringify(decoded));
-
-        // Redirect to login page or dashboard after successful registration
-        navigate('/login');
-      } catch (error) {
-        console.error('Registration failed:', error);
-      }
+      console.log('Form submitted:', formData);
+      // Handle form submission
     }
   };
 
   return (
-    <div className="register">
-      <h1>REGISTER HERE</h1>
-      <form onSubmit={registerUser}>
-        <div>
+    <div className="register-container">
+      <form className="register-form" onSubmit={handleSubmit}>
+        <h1>Register Here</h1>
+        <div className="form-group">
           <label>First Name</label>
           <input
             type="text"
             name="firstName"
             value={formData.firstName}
             onChange={handleChange}
-            required
           />
+          {errors.firstName && <span className="error">{errors.firstName}</span>}
         </div>
-        <div>
+        <div className="form-group">
           <label>Last Name</label>
           <input
             type="text"
             name="lastName"
             value={formData.lastName}
             onChange={handleChange}
-            required
           />
+          {errors.lastName && <span className="error">{errors.lastName}</span>}
         </div>
-        <div>
-          <label>Contact</label>
+        <div className="form-group">
+          <label>Contact Number</label>
           <input
             type="text"
-            name="contact"
-            value={formData.contact}
+            name="contactNumber"
+            value={formData.contactNumber}
             onChange={handleChange}
-            required
           />
+          {errors.contactNumber && <span className="error">{errors.contactNumber}</span>}
         </div>
-        <div>
+        <div className="form-group">
           <label>Address</label>
           <input
             type="text"
             name="address"
             value={formData.address}
             onChange={handleChange}
-            required
           />
         </div>
-        <div>
-          <label>Email</label>
+        <div className="form-group">
+          <label>Email Address</label>
           <input
-            type="email"
+            type="text"
             name="email"
             value={formData.email}
             onChange={handleChange}
-            required
           />
-          {errors.email && <span>{errors.email}</span>}
+          {errors.email && <span className="error">{errors.email}</span>}
         </div>
-        <div>
+        <div className="form-group">
           <label>Password</label>
           <input
             type="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
-            required
           />
-          {errors.password && <span>{errors.password}</span>}
+          {errors.password && <span className="error">{errors.password}</span>}
         </div>
-        <div>
+        <div className="form-group">
           <label>Confirm Password</label>
           <input
             type="password"
             name="confirmPassword"
             value={formData.confirmPassword}
             onChange={handleChange}
-            required
           />
+          {errors.password && <span className="error">{errors.password}</span>}
         </div>
-        <div>
+        <div className="form-group">
           <label>
             <input
               type="checkbox"
-              name="terms"
-              checked={formData.terms}
+              name="termsAccepted"
+              checked={formData.termsAccepted}
               onChange={handleChange}
-              required
             />
             I accept the terms and conditions
           </label>
-          {errors.terms && <span>{errors.terms}</span>}
+          {errors.termsAccepted && <span className="error">{errors.termsAccepted}</span>}
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" className="submit-button">Submit</button>
       </form>
     </div>
   );
-}
+};
 
 export default Register;

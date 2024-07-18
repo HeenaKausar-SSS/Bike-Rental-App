@@ -30,7 +30,6 @@
   color: #36395A;
   cursor: pointer;
   display: inline-flex;
-  font-family: "JetBrains Mono",monospace;
   height: 48px;
   justify-content: center;
   line-height: 1;
@@ -42,8 +41,6 @@
   text-align: left;
   text-decoration: none;
   transition: box-shadow .15s,transform .15s;
-  user-select: none;
-  -webkit-user-select: none;
   touch-action: manipulation;
   white-space: nowrap;
   will-change: box-shadow,transform;
@@ -261,7 +258,7 @@ nav ul.open{
 }
 
 .special-offer-image img {
-  max-width: 800px; /* Adjust size as needed */
+  max-width: 800px;
 }
 
 .special-offer-text {
@@ -279,82 +276,6 @@ nav ul.open{
   font-weight: normal;
   color: #50b498;
   text-align: center;
-}
-
-/* Slider.css */
-
-.slider-container {
-  position: relative;
-  width: 80%;
-  margin: auto;
-  overflow: hidden;
-}
-
-.slider {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-
-.slide {
-  min-width: 100%;
-  transition: transform 0.5s ease-in-out;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.slide img {
-  width: 100%;
-  height: auto;
-  transition: transform 0.3s ease-in-out;
-}
-
-.slide:hover img {
-  transform: scale(1.1);
-}
-
-.step-text {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.navigation-dots {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.dot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin: 0 5px;
-  background-color: #ccc;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.dot.active {
-  background-color: #468585;
-}
-
-.prev,
-.next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-}
-
-.prev {
-  left: 10px;
-}
-
-.next {
-  right: 10px;
 }
 
 
@@ -414,7 +335,7 @@ nav ul.open{
 }
 
 /* ========= LOGIN PAGE, REGISTER PAGE ========= */
-.login, .register, .booking, .profile {
+.login, .register-container, .booking, .profile {
   width: 50%;
   margin: 50px auto;
   padding: 20px;
@@ -475,6 +396,22 @@ input[type="file"] {
   border-radius: 5px;
   background-color: #fff;
 }
+/* Add this CSS to your stylesheet */
+
+.radio-container {
+  display: flex;
+  align-items: center;
+}
+
+.radio-container input[type="radio"] {
+  margin: 0 10px;
+}
+
+.radio-label {
+  color: #468585;
+  font-weight: none;
+}
+
 
 input[type="checkbox"] {
   margin-right: 10px;
@@ -507,7 +444,7 @@ form span {
   font-weight: bold;
 }
 
-button {
+form button {
   width: 100%;
   padding: 10px;
   margin: 20px 0px;
@@ -519,7 +456,7 @@ button {
   font-size: 1.2rem;
 }
 
-button:hover {
+form button:hover {
   background-color: #468585;
 }
 
@@ -722,74 +659,99 @@ button:hover {
 
 /* ================ VEHICLE CARDS =================== */
 
-.vehicle-card {
+.vehicle-cards-container{
   display: flex;
   align-items: center;
-  border: 1px solid #ccc;
-  padding: 15px;
-  margin: 20px;
-  background-color: #f9f9f9;
-  border-radius: 20px;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.vehicle-card {
+  border: 2px solid #96e4e4;
+  border-radius: 8px;
+  overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 16px;
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
 }
 
 .vehicle-image {
-  width: 150px;
-  height: auto;
-  margin-right: 20px;
-  border-radius: 10px;
+  width: 100%;
+  height: 300px;
 }
-
-.vehicle-info {
-  width: 40%;
+.vehicle-card img{
+  object-fit: contain;
 }
 
 .vehicle-name {
-  font-size: 1.5em;
-  margin: 0;
+  font-size: 1.5rem;
+  margin: 16px 0 8px;
+  text-align: center;
 }
 
-.vehicle-model {
-  font-size: 1em;
-  color: #555;
-}
-.vehicle-book-detail{
-display: flex;
-align-items: center;
-justify-content: space-around;
-padding: 10px;
-width: 50%;
-}
-.vehicle-rate {
-  margin-left: 20px;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-.vehicle-book-detail span{
-  font-size: 1.5rem;
+.vehicle-amount {
+  font-size: 2rem;
+  color: #50B498;
+  text-align: center;
+  margin: 0 0 8px;
 }
 
-.vehicle-quantity input {
-  width: 80px;
+.vehicle-description {
+  font-size: 1rem;
+  margin: 0 16px 8px;
+  text-align: center;
+}
+
+.vehicle-quantity {
+  width: 100%;
+  margin-right: 100px;
+  padding: 5px;
+  font-size: 1rem;
+  outline: none;
+  border-radius: 4px;
+}
+
+.vehicle-action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-top: 1px solid #eee;
+}
+
+.vehicle-button {
+  padding: 8px 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.vehicle-button:hover {
+  background-color: #218838;
 }
 
 .vehicle-availability {
-  background-color: #9CDBA6;
-  border-radius: 20px;
-  padding: 10px;
+  flex: 1;
+  text-align: center;
 }
-.vehicle-availability span{
-  color: white;
+
+.full-width {
+  flex: 1;
+  text-align: center;
 }
-.vehicle-book-btn a{
-  text-decoration: none;
+
+@media (max-width: 768) {
+  .vehicle-card {
+    margin: 8px;
+  }
 }
-.vehicle-book-btn button:hover{
-  background-color: #fff;
-}
-.btn-hidden{
-  display: none;
-}
+
+
+
 /* ================== USER BOOKING PAGE ===================== */
 
 .booking-list {

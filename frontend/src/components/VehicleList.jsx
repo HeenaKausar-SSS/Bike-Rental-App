@@ -9,41 +9,57 @@ const vehicles = [
     {
       image: image1,
       name: 'Royal Enfield Himalayan',
-      model: '2016',
-      rate: 200,
-      availability: true
+      description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae, quis at! Fuga dolorum aliquam ducimus sequi minima officiis, distinctio eos?",
+      amount: 200,
+      available: true
     },
     {
       image: image2,
       name: 'Zontes 350X',
-      model: '2021',
-      rate: 200,
-      availability: true
+      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex asperiores excepturi nesciunt corporis culpa in adipisci alias esse incidunt et?",
+      amount: 200,
+      available: true
     },
     {
       image: image3,
       name: 'TVS NTORQ 125',
-      model: '2018',
-      rate: 200,
-      availability: true
+      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex asperiores excepturi nesciunt corporis culpa in adipisci alias esse incidunt et?" ,
+      amount: 200,
+      available: true
     },
     {
       image: image4,
       name: 'Bajaj Chetak',
-      model: '2020',
-      rate: 200,
-      availability: false
+      description:  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex asperiores excepturi nesciunt corporis culpa in adipisci alias esse incidunt et?",
+      amount: 200,
+      available: false
+    },
+    {
+      image: image4,
+      name: 'Bajaj Chetak',
+      description:  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex asperiores excepturi nesciunt corporis culpa in adipisci alias esse incidunt et?",
+      amount: 200,
+      available: false
+    },
+    {
+      image: image4,
+      name: 'Bajaj Chetak',
+      description:  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex asperiores excepturi nesciunt corporis culpa in adipisci alias esse incidunt et?",
+      amount: 200,
+      available: false
     }
     
   ];
 
 const VehicleList = () => {
   return (
-    <div>
-      {vehicles.map((vehicle, index) => (
-        <VehicleCard key={index} vehicle={vehicle} />
-      ))}
-    </div>
+    
+      <div className="vehicle-cards-container">
+        {vehicles.map((vehicle, index) => (
+          <VehicleCard key={index} {...vehicle} />
+        ))}
+      </div>
+    
   );
 };
 
