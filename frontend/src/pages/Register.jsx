@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
+import axios from 'axios';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +15,7 @@ const Register = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value, checked, type } = e.target;
@@ -61,11 +64,20 @@ const Register = () => {
     return Object.keys(errors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validate()) {
-      console.log('Form submitted:', formData);
-      // Handle form submission
+    try {
+      if(validate()){
+const response = await axios.post(`${process.env.BIKE_RENTAL_APP_BASE_URL}/users/register`, formData);
+const newUser = response.data;
+console.log(newUser)
+if(!newUser){
+  setErrors('Unable to register user try again');
+}
+navigate('/login');
+      }
+    } catch (error) {
+     setErrors(error.response.data) 
     }
   };
 
