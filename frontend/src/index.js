@@ -12,6 +12,15 @@ import ProfilePage from './pages/ProfilePage';
 import AllVehiclesPage from './pages/AllVehiclesPage';
 import UserBookingPage from './pages/UserBookingPage';
 
+import AdminLayout from "./components/AdminDashboard/AdminLayout"
+import Homepage from './pages/AdminDashboard/Homepage';
+import UserMng from './pages/AdminDashboard/UserMng';
+import BookingMng from './pages/AdminDashboard/BookingMng';
+import VehicleMng from './pages/AdminDashboard/VehicleMng';
+import InventoryMng from './pages/AdminDashboard/InventoryMng';
+import AdminRegister from './pages/AdminDashboard/AdminRegister';
+import AdminLogin from './pages/AdminDashboard/AdminLogin';
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,9 +35,22 @@ const router = createBrowserRouter([
       { path: "vehicle", element: <AllVehiclesPage /> },
       { path: "showuserbooking", element: <UserBookingPage /> },
     ]
+  },
+  {
+    path: "/admin",
+    element: <AdminLayout/>,
+    errorElement: <ErrorPage/>,
+    children: [
+      {index: true, element: <Homepage/>},
+      { path: "admin-register", element: <AdminRegister /> },
+      { path: "admin-login", element: <AdminLogin /> },
+      { path: "manage-user", element: <UserMng /> },
+      { path: "manage-booking", element: <BookingMng /> },
+      { path: "manage-vehicle", element: <VehicleMng /> },
+      { path: "manage-inventory", element: <InventoryMng /> }
+    ]
   }
 ])
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
