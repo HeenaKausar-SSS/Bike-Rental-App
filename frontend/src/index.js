@@ -20,11 +20,12 @@ import VehicleMng from './pages/AdminDashboard/VehicleMng';
 import InventoryMng from './pages/AdminDashboard/InventoryMng';
 import AdminRegister from './pages/AdminDashboard/AdminRegister';
 import AdminLogin from './pages/AdminDashboard/AdminLogin';
+import UserProvider from './context/UserContext';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout/>,
+    element: <UserProvider><Layout/></UserProvider>,
     errorElement: <ErrorPage/>,
     children: [
       {index: true, element: <Home/>},
