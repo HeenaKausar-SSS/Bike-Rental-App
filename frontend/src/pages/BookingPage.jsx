@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router';
+import { UserContext } from '../context/UserContext';
+
 
 function BookingPage() {
   const [formData, setFormData] = useState({
@@ -22,6 +25,16 @@ function BookingPage() {
 
   const [errors, setErrors] = useState({});
   const [openSection, setOpenSection] = useState(null);
+  const navigate = useNavigate();
+
+  const {currentUser} = useContext(UserContext);
+  const token = currentUser?.token
+
+  useEffect(() => {
+    if(!token){
+      navigate('/login')
+    }
+  }, [])
 
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, NavLink } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { RiMotorbikeFill } from "react-icons/ri";
@@ -6,10 +6,12 @@ import { MdBookmark } from "react-icons/md";
 import { FaCartShopping } from "react-icons/fa6";
 import logo from "../images/logo2.png";
 
+import {UserContext} from '../context/UserContext'
+
 const Header = () => {
 
   const [menuOpen, setMenuOpen] = useState(false);
-
+const {currentUser} = useContext(UserContext)
 
   return (
     <>
@@ -25,33 +27,45 @@ const Header = () => {
           <span></span>
          </div>
          
-      <ul className={menuOpen ? "open" : ""}>
-      {/* <li>
-             <Link to={"/userprofile/1"}>
-               <FaUserCircle  className="nav_icon" /> JOHN
-             </Link>
-           </li> */}
+      {currentUser?.id && <ul className={menuOpen ? "open" : ""}>
            <li>
              <NavLink to={"/book"}>
                <MdBookmark className="nav_icon" /> Book A Vehicle
              </NavLink>
            </li>
           <li>
-             <NavLink to={"/vehicle"}>
+             <NavLink to={"/vehicles"}>
                <RiMotorbikeFill className="nav_icon" /> See Bikes
              </NavLink>
            </li>
            <li>
-             <NavLink to={"/showuserbooking"}>
+             <NavLink to={"/history"}>
                <FaCartShopping className="nav_icon" /> All Bookings
              </NavLink>
            </li>
            <li>
-            <NavLink to={"/login"}>
+            <NavLink to={"/profile/1"}>
+               <FaUserCircle  className="nav_icon" /> Profile
+             </NavLink>
+           </li>
+           <li>
+            <NavLink to={"/logout"}>
                <FaUserCircle  className="nav_icon" /> Logout
              </NavLink>
            </li>
-      </ul>
+      </ul>}
+      {!currentUser?.id && <ul className={menuOpen ? "open" : ""}>
+          <li>
+             <NavLink to={"/vehicles"}>
+               <RiMotorbikeFill className="nav_icon" /> See Bikes
+             </NavLink>
+           </li>
+           <li>
+            <NavLink to={"/login"}>
+               <FaUserCircle  className="nav_icon" /> Login
+             </NavLink>
+           </li>
+      </ul>}
     </nav>
     </>
   )

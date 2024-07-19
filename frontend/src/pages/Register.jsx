@@ -68,7 +68,7 @@ const Register = () => {
     e.preventDefault();
     try {
       if(validate()){
-const response = await axios.post(`${process.env.BIKE_RENTAL_APP_BASE_URL}/users/register`, formData);
+const response = await axios.post(`${process.env.BIKE_RENTAL_APP_BASE_URL}/api/v1/users/register`, formData);
 const newUser = response.data;
 console.log(newUser)
 if(!newUser){

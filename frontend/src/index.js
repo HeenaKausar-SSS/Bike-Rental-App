@@ -10,7 +10,9 @@ import Login from "./pages/Login";
 import BookingPage from "./pages/BookingPage";
 import ProfilePage from './pages/ProfilePage';
 import AllVehiclesPage from './pages/AllVehiclesPage';
-import UserBookingPage from './pages/UserBookingPage';
+import ViewUserBookingPage from './pages/ViewUserBookingPage';
+import EditBooking from './pages/EditBooking';
+import DeleteBooking from './pages/DeleteBooking';
 
 import AdminLayout from "./components/AdminDashboard/AdminLayout"
 import Homepage from './pages/AdminDashboard/Homepage';
@@ -31,10 +33,13 @@ const router = createBrowserRouter([
       {index: true, element: <Home/>},
       { path: "register", element: <Register /> },
       { path: "login", element: <Login /> },
+      { path: "login", element: <Login /> },
       { path: "book", element: <BookingPage /> },
-      { path: "userprofile/:id", element: <ProfilePage /> },
-      { path: "vehicle", element: <AllVehiclesPage /> },
-      { path: "showuserbooking", element: <UserBookingPage /> },
+      { path: "book/:id", element: <EditBooking /> },
+      { path: "book/:id", element: <DeleteBooking /> },
+      { path: "profile/:id", element: <ProfilePage /> },
+      { path: "vehicles", element: <AllVehiclesPage /> },
+      { path: "history", element: <ViewUserBookingPage /> },
     ]
   },
   {

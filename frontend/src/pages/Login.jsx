@@ -1,66 +1,96 @@
-import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+import {UserContext} from '../context/UserContext'
+
+
+const Login = () => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+  const { setCurrentUser } = useContext(UserContext);
 
   const validate = () => {
-    let formErrors = {};
+    const errors = {};
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-    if (!email.includes('@')) {
-      formErrors.email = 'Invalid email address';
+    if (!emailPattern.test(formData.email)) {
+      errors.email = 'Invalid email address';
     }
 
-    if (password.length < 6) {
-      formErrors.password = 'Password must be at least 6 characters long';
+    if (formData.password.length < 8) {
+      errors.password = 'Password must be at least 8 characters long';
     }
 
-    setErrors(formErrors);
-
-    return Object.keys(formErrors).length === 0;
+    setErrors(errors);
+    return Object.keys(errors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validate()) {
-      console.log('Form submitted:', { email, password });
-      // Authentication logic here
+    try {
+      if (validate()) {
+        const response = await axios.post(`${process.env.BIKE_RENTAL_APP_BASE_URL}api/v1/users/login`, formData);
+        const user = response.data;
+        setCurrentUser(user);
+        console.log(user);
+        if (!user) {
+          setErrors({ general: 'Invalid email or password' });
+        } else {
+          navigate('/'); 
+        }
+      }
+    } catch (error) {
+      setErrors({ general: error.response.data.message || 'An error occurred during login' });
     }
   };
 
   return (
     <div className="login">
-      <h1>LOGIN</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email</label>
+      <form className="login-form" onSubmit={handleSubmit}>
+        <h1>Login Here</h1>
+        <div className="form-group">
+          <label>Email Address</label>
           <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
+            type="text"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
           />
-          {errors.email && <span>{errors.email}</span>}
+          {errors.email && <span className="error">{errors.email}</span>}
         </div>
-        <div>
+        <div className="form-group">
           <label>Password</label>
           <input
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
           />
-          {errors.password && <span>{errors.password}</span>}
+          {errors.password && <span className="error">{errors.password}</span>}
         </div>
-        <button type="submit">Login</button>
+        {errors.general && <span className="error">{errors.general}</span>}
+        <button type="submit" className="submit-button">Login</button>
       </form>
       <p className="register-link">
         Don't have an account? <Link to="/register">Register here</Link>
       </p>
     </div>
   );
-}
+};
 
 export default Login;
+
