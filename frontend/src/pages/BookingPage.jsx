@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router';
+import axios from 'axios';
 import { UserContext } from '../context/UserContext';
-
 
 function BookingPage() {
   const [formData, setFormData] = useState({
@@ -27,14 +27,14 @@ function BookingPage() {
   const [openSection, setOpenSection] = useState(null);
   const navigate = useNavigate();
 
-  const {currentUser} = useContext(UserContext);
-  const token = currentUser?.token
+  const { currentUser } = useContext(UserContext);
+  const token = currentUser?.token;
 
   useEffect(() => {
-    if(!token){
-      navigate('/login')
+    if (!token) {
+      navigate('/login');
     }
-  }, [])
+  }, [token, navigate]);
 
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
@@ -60,10 +60,28 @@ function BookingPage() {
     return Object.keys(formErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validate()) {
-      console.log('Form submitted:', formData);
+      try {
+        const formDataToSend = new FormData();
+        for (const key in formData) {
+          formDataToSend.append(key, formData[key]);
+        }
+
+        const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/bookings/book-vehicle`, formDataToSend, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+
+        console.log('Form submitted successfully:', response.data);
+        // Handle successful form submission, e.g., navigate to a confirmation page
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        // Handle error
+      }
     }
   };
 

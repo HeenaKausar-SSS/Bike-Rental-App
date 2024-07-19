@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink,useParams } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { RiMotorbikeFill } from "react-icons/ri";
 import { MdBookmark } from "react-icons/md";
@@ -12,7 +12,7 @@ const Header = () => {
 
   const [menuOpen, setMenuOpen] = useState(false);
 const {currentUser} = useContext(UserContext)
-
+const { id } = useParams();
   return (
     <>
     <nav>
@@ -44,7 +44,7 @@ const {currentUser} = useContext(UserContext)
              </NavLink>
            </li>
            <li>
-            <NavLink to={"/profile/1"}>
+            <NavLink to={`/profile/${id}`}>
                <FaUserCircle  className="nav_icon" /> Profile
              </NavLink>
            </li>
