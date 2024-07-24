@@ -456,7 +456,7 @@ form button {
   font-size: 1.2rem;
 }
 
-form button:hover {
+.section form button:hover {
   background-color: #468585;
 }
 
@@ -821,58 +821,17 @@ form button:hover {
 
 /* ================ ADMIN DASHBOARD CSS ================ */
 
-/*  COLOR PALATE
-#9195F6
-#B7C9F2
-#F9F07A
-#FB88B4
-*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
-/* .sidebar {
-  width: 250px;
-  background-color: #9195F6;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  box-sizing: border-box;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-}
-
-.admin-name {
-  font-size: 1.5em;
-  margin-bottom: 20px;
-  color: white;
-}
-
-.sidebar-links a {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  margin: 10px 0;
-  text-decoration: none;
-  color: white;
-  border-radius: 5px;
-}
-
-.sidebar-links a:hover, .sidebar-links a.active {
-  background-color: #B7C9F2;
-}
-
-.sidebar-links a svg {
-  margin-right: 10px;
-} */
 .sidebar {
   width: 250px;
-  background-color: #9195F6;
+  background-color: black;
   color: white;
   height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
-  padding: 20px;
+  padding: 20px 0;
   box-sizing: border-box;
   transition: transform 0.3s ease-in-out;
   z-index: 1000;
@@ -881,24 +840,33 @@ form button:hover {
 .sidebar.open {
   transform: translateX(0);
 }
+.sidebar-links{
+  margin: 30px 0;
 
+}
 .sidebar-links a {
   color: white;
   display: flex;
   align-items: center;
-  padding: 10px 0;
+  padding: 15px;
+  font-size: 1.2rem;
   text-decoration: none;
+
 }
 
 .sidebar-links a:hover, .sidebar-links a.active {
-  background-color: #B7C9F2;
+  background-color: #3e6cd7;
+  border-radius: 20px;
 }
 .sidebar-links a svg {
-  margin-right: 10px;
+  margin-right: 15px;
 } 
 .admin-name {
   font-size: 1.5em;
-  margin-bottom: 20px;
+  background-color: #3e6cd7;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
 }
 
 .hamburger-menu {
@@ -907,7 +875,7 @@ form button:hover {
   top: 15px;
   left: 15px;
   font-size: 2em;
-  color: #96e4e4;
+  color: #fff;
   z-index: 1100;
   cursor: pointer;
 }
@@ -925,101 +893,141 @@ form button:hover {
 
   .hamburger-menu {
     display: block;
+    color: black;
+    margin-top: 12px;
   }
 }
 
 .main-content {
-  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100vh;
+  flex-direction: column;
   margin-left: 250px; 
   padding: 20px;
   box-sizing: border-box;
-  overflow-y: auto;
-  flex-grow: 1;
-  padding: 20px;
-  margin-left: 250px;
 }
 
-.card {
-  background-color: #F9F07A;
+.main-content .card {
+  background-color: #03346E;
+  width: 60%;
+  height: 150px;
   padding: 20px;
-  margin: 10px 0;
-  border-radius: 5px;
+  margin: 10px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+.main-content .card-icon {
+  color: white;
+  font-size: 5rem;
+  padding: 20px;
+  margin-top: 15px;
+}
+
+.main-content .card-text {
+  flex: 1;
+  font-size: 2rem;
+  margin-left: 10px;
+  color: white;
+}
+
+.main-content .card-number {
+  background-color: white;
+  width: 80px;
+  height: 80px;
+  font-weight: bold;
+  font-size: 2rem;
+  margin-right: 20px;
+  border-radius: 50px;
+  text-align: center;
   display: flex;
   align-items: center;
-}
-
-.card-icon {
-  margin-right: 20px;
-  font-size: 2em;
-}
-
-.card-text {
-  flex: 1;
-}
-
-.card-number {
-  font-size: 1.5em;
+  justify-content: center;
+  color: #3e6cd7;
 }
 @media (max-width: 768px) {
   .main-content {
+    margin-top: 40px;
     margin-left: 0;
+  }
+  .main-content .card{
+    width: 100%;
   }
 }
 
 /* ============= USER MANAGEMENT ==================== */
-
-.user-management {
-  margin-left: 250px;
+table{
+  font-family: "Roboto", sans-serif;
+}
+.user-management, .booking-management,  .manage-bikes, .manage-inventory {
+  margin: 50px 0 5px 250px;
   padding: 20px;
   box-sizing: border-box;
   overflow-y: auto;
 }
 
-.user-table {
-  width: 100%;
-  border-collapse: collapse;
+.user-management h2, .booking-management h2,  .manage-bikes h2, .manage-inventory h2{
+padding: 10px;
+text-align: center;
+margin: 10px;
 }
 
-.user-table th, .user-table td {
-  padding: 10px;
-  border: 1px solid #ddd;
-  text-align: left;
+.user-table, .booking-table, .bike-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
 .user-table th {
-  background-color: #B7C9F2;
+  background-color: #03346E;
   color: white;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 15px;
 }
+
+ .user-table tbody tr{
+  border-bottom: 2px solid #ccc;
+ }
 
 .user-table td {
-  background-color: #F9F07A;
-  height: 180px;
+  background-color: #fff;
+  height: 100px;
+  padding: 5px;
+  text-align: center;
 }
 
-.profile-photo {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+.user-management .profile-photo {
+  width: 70px;
+  height: 70px;
+  border-radius: 25%;
 }
-
+.actions{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .actions button {
   margin: 0 5px;
-  background: none;
   border: none;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
   cursor: pointer;
-  font-size: 1.2em;
+  font-size: 1.4em;
+  color: #3e6cd7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
-.view-btn {
-  color: #9195F6;
-}
-
-.edit-btn {
-  color: #FB88B4;
-}
-
-.delete-btn {
-  color: #FF6B6B;
+.actions button:hover{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 @media (max-width: 768px) {
@@ -1027,75 +1035,77 @@ form button:hover {
     margin-left: 0;
     padding: 10px;
   }
-  .actions {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-  } 
+.actions{
+  margin-top: 20px;
+}
+
 }
 
 /* ============================= BOOKING MANAGEMENT =================================== */
 
-.booking-management {
-  margin-left: 250px; 
-  padding: 20px;
-  box-sizing: border-box;
-  overflow-y: auto;
-}
-
-.cards {
+.booking-management .cards {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  padding: 10px;
 }
 
-.card {
-  background-color: #F9F07A;
+.booking-management  .card {
+  background-color: #3e6cd7;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 30%;
-}
-
-.card-text {
-  margin-bottom: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  color: white;
+  font-size: 1.5rem;
 }
 
 .card-number {
-  font-size: 1.5em;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 .search-filter {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  gap: 40px;
+  justify-content: center;
+  margin: 20px;
 }
 
-.search-bar {
+.search-bar, .filter {
   display: flex;
   align-items: center;
-  background-color: #B7C9F2;
-  padding: 5px 10px;
-  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  width: 40%;
+  border-radius: 30px;
 }
-
+.search-bar .icon, .filter .icon{
+  background-color: black;
+  width: 70px;
+  height: 50px;
+  border-radius: 25px 0 0 25px ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+}
+.search-bar svg, .filter svg{
+  font-size: 1.5rem;
+  color: #fff;
+}
 .search-bar input {
   border: none;
   background: none;
   outline: none;
   padding: 5px;
   color: #333;
-}
-
-.filter {
-  display: flex;
-  align-items: center;
-  background-color: #B7C9F2;
-  padding: 5px 10px;
-  border-radius: 5px;
+  text-transform: capitalize;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 .filter select {
@@ -1105,12 +1115,7 @@ form button:hover {
   padding: 5px;
   color: #333;
 }
-
-.booking-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
+/* 
 .booking-table th, .booking-table td {
   padding: 10px;
   border: 1px solid #ddd;
@@ -1125,27 +1130,8 @@ form button:hover {
 .booking-table td {
   background-color: #F9F07A;
   height: 180px;
-}
+} */
 
-.actions button {
-  margin: 0 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.2em;
-}
-
-.view-btn {
-  color: #9195F6;
-}
-
-.edit-btn {
-  color: #FB88B4;
-}
-
-.delete-btn {
-  color: #FF6B6B;
-}
 
 @media (max-width: 768px) {
   .booking-management {
@@ -1178,24 +1164,12 @@ form button:hover {
   }
 }
  /* ======================= VEHICLE MANAGEMENT ========================= */
- .manage-bikes {
-  margin-left: 250px;
-  padding: 20px;
-  box-sizing: border-box;
-  overflow-y: auto;
-}
 
 .section {
   margin-bottom: 30px;
 }
 
-.bike-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-}
-
-.bike-table th, .bike-table td {
+/* .bike-table th, .bike-table td {
   padding: 10px;
   border: 1px solid #ddd;
   text-align: left;
@@ -1209,27 +1183,7 @@ form button:hover {
 .bike-table td {
   background-color: #F9F07A;
   height: 180px;
-}
-
-.actions button {
-  margin: 0 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.2em;
-}
-
-.view-btn {
-  color: #9195F6;
-}
-
-.edit-btn {
-  color: #FB88B4;
-}
-
-.delete-btn {
-  color: #FF6B6B;
-}
+} */
 
 @media (max-width: 768px) {
   .manage-bikes {
@@ -1243,12 +1197,7 @@ form button:hover {
   }
 }
  /* ======================= INVENTORY MANAGEMENT ========================= */
- .manage-inventory {
-  margin-left: 250px; /* Same as sidebar width */
-  padding: 20px;
-  box-sizing: border-box;
-  overflow-y: auto;
-}
+
 
 .header {
   display: flex;
@@ -1273,11 +1222,11 @@ form button:hover {
   margin-right: 10px;
 }
 
-.search-filter {
+/* .search-filter {
   display: flex;
   justify-content: space-between;
-}
-
+} */
+/* 
 .search-bar {
   display: flex;
   align-items: center;
@@ -1292,23 +1241,7 @@ form button:hover {
   outline: none;
   padding: 5px;
   color: #333;
-}
-
-.filter {
-  display: flex;
-  align-items: center;
-  background-color: #B7C9F2;
-  padding: 5px 10px;
-  border-radius: 5px;
-}
-
-.filter select {
-  border: none;
-  background: none;
-  outline: none;
-  padding: 5px;
-  color: #333;
-}
+} */
 
 .cards {
   display: flex;
@@ -1348,22 +1281,6 @@ form button:hover {
 .card p {
   margin-bottom: 10px;
   text-align: center;
-}
-
-.actions button {
-  margin: 0 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.2em;
-}
-
-.edit-btn {
-  color: #9195F6;
-}
-
-.delete-btn {
-  color: #FF6B6B;
 }
 
 @media (max-width: 768px) {
@@ -1421,125 +1338,62 @@ form button:hover {
   }
 }
 
-/* ================ ADMIN REGISTER ==================== */
+/* ================ ADMIN REGISTER & LOGIN ==================== */
 
-.admin-register {
-  max-width: 500px;
+.admin-login, .admin-register {
+  max-width: 800px;
   margin: 50px auto;
   padding: 20px;
-  background-color: #F9F07A;
-  border-radius: 10px;
+  background-color: #033460;
+  border-radius: 40px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.admin-register form {
+.admin-register form, .admin-login form {
   display: flex;
   flex-direction: column;
 }
-
-.admin-register h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #282c34;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  color: #282c34;
-}
-
-.form-group input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.submit-btn {
-  background-color: #FB88B4;
+.admin-login h2, .admin-register h2 {
   color: white;
-  border: none;
+  text-align: center;
   padding: 10px;
-  font-size: 1em;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-size: 2rem;
 }
-
-.submit-btn:hover {
-  background-color: #e07a9f;
-}
-
-@media (max-width: 768px) {
-  .admin-register {
-    margin: 20px;
-    padding: 15px;
-  }
-
-  .form-group input {
-    padding: 8px;
-  }
-
-  .submit-btn {
-    padding: 8px;
-  }
-}
-/* =================== ADMIN LOGIN =================== */
-.admin-login {
-  max-width: 500px;
-  margin: 50px auto;
-  padding: 20px;
-  background-color: #F9F07A;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.admin-login form {
+.form-group{
+  margin-top: 10px;
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-
-.admin-login h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #282c34;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
 .form-group label {
   display: block;
-  margin-bottom: 5px;
-  color: #282c34;
+  color: #fff;
+  font-size: 1.5rem;
 }
 
 .form-group input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  width: 70%;
+  outline: none;
+  background: #3e6cd7;
+  border:none;
+  border-bottom: 2px solid #fff;
+  margin: 20px 0;
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 1.5rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
 
 .submit-btn {
-  background-color: #FB88B4;
-  color: white;
+  background-color: #fff;
+  color: #033460;
   border: none;
-  padding: 10px;
-  font-size: 1em;
-  border-radius: 5px;
+  font-size: 1.5rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
-}
-
-.submit-btn:hover {
-  background-color: #e07a9f;
+  width: 250px;
+  margin: 20px auto;
 }
 
 .register-link {
@@ -1548,12 +1402,8 @@ form button:hover {
 }
 
 .register-link a {
-  color: #282c34;
+  color: #fff;
   text-decoration: none;
-}
-
-.register-link a:hover {
-  text-decoration: underline;
 }
 
 @media (max-width: 768px) {
@@ -1570,15 +1420,19 @@ form button:hover {
     padding: 8px;
   }
 }
+
+/* ================ ADMIN FOOTER ==================== */
+
 .admin-footer {
-  background-color: #282c34;
-  color: white;
+  background-color: #fff;
+  color: black;
   text-align: center;
-  padding: .5rem;
+  /* padding: 2; */
   position: fixed;
   bottom: 0;
   width: 100%;
   margin: 0;
+  z-index: 1000;
 }
 
 
