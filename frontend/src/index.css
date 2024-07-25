@@ -1121,7 +1121,7 @@ margin: 10px;
     height: 300px;
   }
 .search-filter{
-  width: 100%;
+  width: 90%;
   display: flex;
   flex-wrap: wrap;
 }
@@ -1157,116 +1157,173 @@ margin: 10px;
 }
 
 .add-bike-btn {
-  background-color: black;
+  background-color: #033460;
   color: white;
   border: none;
   padding: 10px 20px;
-  font-size: 1.5em;
+  font-size: 1.2em;
   border-radius: 25px;
   cursor: pointer;
   display: flex;
   align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  font-weight: bold;
+}
+
+.add-bike-btn:hover{
+  background-color: #3e6cd7;
 }
 
 .add-bike-btn svg {
-  margin-right: 10px;
+  margin-right: 5px;
+  font-size: 1rem;
 }
 
-/* .search-filter {
-  display: flex;
-  justify-content: space-between;
-} */
-/* 
-.search-bar {
-  display: flex;
-  align-items: center;
-  background-color: #B7C9F2;
-  padding: 5px 10px;
-  border-radius: 5px;
-}
-
-.search-bar input {
-  border: none;
-  background: none;
-  outline: none;
-  padding: 5px;
-  color: #333;
-} */
-
-.cards {
+.manage-inventory .cards {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
 }
 
-.card {
-  background-color: #F9F07A;
+.manage-inventory .card {
+  background-color: white;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 25px;
   width: calc(33.333% - 20px);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-.card img {
+.manage-inventory .card img {
   max-width: 300px;
   height: 300px;
-  border-radius: 5px;
   object-fit: contain;
   margin-bottom: 15px;
 }
 
-.card-content {
+.manage-inventory .card-content {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.card h3 {
-  margin-bottom: 10px;
+.manage-inventory .card h3 {
+  margin-bottom: 5px;
+  font-family: "Roboto", sans-serif;
 }
 
-.card p {
-  margin-bottom: 10px;
-  text-align: center;
+.manage-inventory .card p {
+  margin-bottom: 5px;
+  text-align: start;
 }
-
-/* @media (max-width: 768px) {
+.manage-inventory .card-btn{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 300px;
+  margin: 5px 0;
+}
+.manage-inventory .edit-btn, .manage-inventory .delete-btn, .add-bike-form button{
+  padding: 10px;
+  width: 200px;
+  height: 40px;
+  text-transform: uppercase;
+  margin: 5px;
+  border-radius: 25px;
+  background-color: #033460;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+}
+.manage-inventory .edit-btn:hover, .manage-inventory .delete-btn:hover, .add-bike-form button:hover{
+  background-color: #3e6cd7;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.manage-inventory .form-popup{
+  width: 80%;
+  padding: 0 40px;
+  margin: 0 auto;
+}
+.add-bike-form{
+  background-color: white;
+  display: flex;
+  align-items: center;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+border-radius: 50px;
+  justify-content: center;
+  flex-direction: column;
+width: 80%;
+}
+.add-bike-form label{
+color: #033460;
+font-weight: bold;
+}
+.add-bike-form input{
+  outline: none;
+  background: #3e6cd7;
+  width: 100%;
+  border:none;
+  margin: 20px 0;
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 1.5rem;
+}
+.add-bike-form .btn-container{
+  display: flex;
+  width: 60%;
+align-items: center;
+justify-content: center;
+margin: 5px 0 15px 0;
+}
+.add-bike-form button{
+  width: 30%;
+  margin:  10px;
+}
+@media (max-width: 768px) {
   .manage-inventory {
     margin-left: 0;
     padding: 10px;
   }
 
-  .header {
+  .manage-inventory .header {
     flex-direction: column;
   }
 
-  .search-filter {
-    width: 100%;
+  .manage-inventory .cards {
     flex-direction: column;
-    margin-top: 10px;
-  }
-
-  .search-bar, .filter {
     width: 100%;
-    margin-bottom: 10px;
+    align-items: center;
   }
 
-  .cards {
-    flex-direction: column;
+  .manage-inventory .card {
+    width: 40%;
   }
-
-  .card {
-    width: 100%;
-  }
-  .card img{
+  .manage-inventory .card img{
     width: 200px;
     height: 200px;
     object-fit: contain;
   }
-} */
+  .manage-inventory .card p{
+    width: 200px;
+    overflow: hidden;
+  }
+  .manage-inventory .card-btn{
+   flex-wrap: wrap;
+  }
+  .add-bike-form{
+    width: 100%;
+    padding: 0 30px;
+  }
+  .add-bike-form .btn-container{
+    width: 100%;
+  }
+}
 
 /* ====================== */
 
